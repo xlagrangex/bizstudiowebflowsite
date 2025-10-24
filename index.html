@@ -174,6 +174,39 @@
       background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
     }
     
+    /* Toggle per voci BizStudio */
+    .biz-toggle {
+      cursor: pointer;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .biz-toggle::after {
+      content: '+';
+      margin-left: 8px;
+      font-weight: bold;
+      transition: transform 0.3s ease;
+    }
+    
+    .biz-toggle.expanded::after {
+      content: '-';
+      transform: rotate(0deg);
+    }
+    
+    .biz-details {
+      display: none;
+      margin-top: 10px;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+    
+    .biz-details.show {
+      display: block;
+    }
+    
     /* Responsive */
     @media (max-width: 768px) {
       .reviews-container {
@@ -937,56 +970,104 @@
                   <p class="awards_data"><strong class="bold-text-26">Solo design, senza strategia</strong></p>
                   <p class="awards_data"><strong class="bold-text-27">Siti vetrina &quot;pronti all&#x27;uso&quot; ma poco performanti</strong></p>
                   <p class="awards_data">Servizi generalisti (social, grafica, web, pubblicità…)</p>
-                  <p class="awards_data white">Solo siti strategici</p>
+                  <p class="awards_data white">
+                    <span class="biz-toggle" onclick="toggleBizDetails('specializzazione')">Solo siti strategici</span>
+                    <div id="specializzazione" class="biz-details">
+                      ✅ Solo siti web strategici<br>
+                      BizStudio si occupa ESCLUSIVAMENTE di siti web strategici: belli, veloci e orientati al business. Non facciamo social, grafica o pubblicità - solo siti che convertono visitatori in clienti.
+                    </div>
+                  </p>
                 </div>
                 <div data-w-id="e34ba04e-d7c1-c1fb-2b28-5b5f93629433" class="awards_row">
                   <p class="awards_data"><strong class="bold-text-36">Rapporto &amp; Comunicazione</strong></p>
                   <p class="awards_data"><strong class="bold-text-25">WhatsApp instabile</strong></p>
                   <p class="awards_data"><strong class="bold-text-28">Telefonate saltuarie</strong></p>
                   <p class="awards_data">Ticket impersonali, linguaggio tecnico</p>
-                  <p class="awards_data white">Consulente dedicato</p>
+                  <p class="awards_data white">
+                    <span class="biz-toggle" onclick="toggleBizDetails('rapporto')">Consulente dedicato</span>
+                    <div id="rapporto" class="biz-details">
+                      ✅ Consulente dedicato<br>
+                      Hai un consulente dedicato che traduce il tecnico in semplice, ti ascolta e ti guida con trasparenza. Comunicazione chiara, diretta, onesta - ti facciamo sentire compreso, non un numero.
+                    </div>
+                  </p>
                 </div>
                 <div data-w-id="e34ba04e-d7c1-c1fb-2b28-5b5f93629437" class="awards_row">
                   <p class="awards_data"><strong class="bold-text-37">Pagamento</strong></p>
                   <p class="awards_data"><strong class="bold-text-24">100% in anticipo</strong></p>
                   <p class="awards_data"><strong class="bold-text-29">Anticipo + saldo (spesso con costi nascosti)</strong></p>
                   <p class="awards_data">Canoni vincolanti e clausole nascoste</p>
-                  <p class="awards_data white">Pagamenti a fasi</p>
+                  <p class="awards_data white">
+                    <span class="biz-toggle" onclick="toggleBizDetails('pagamento')">Pagamenti a fasi</span>
+                    <div id="pagamento" class="biz-details">
+                      ✅ Pagamento a fasi<br>
+                      Paghi solo dopo approvazione scritta di ogni step. Non devi mai versare l'intero importo in anticipo: ogni fase si paga solo quando è completata e approvata da te per iscritto.
+                    </div>
+                  </p>
                 </div>
                 <div data-w-id="e34ba04e-d7c1-c1fb-2b28-5b5f9362943c" class="awards_row">
                   <p class="awards_data"><strong class="bold-text-38">Velocità Consegna</strong></p>
                   <p class="awards_data"><strong class="bold-text-23">1–3 mesi (se non sparisce)</strong></p>
                   <p class="awards_data"><strong class="bold-text-30">1–3 mesi, tempi incerti</strong></p>
                   <p class="awards_data">2–6 mesi (processi lenti e burocratici)</p>
-                  <p class="awards_data white">7-30 giorni</p>
+                  <p class="awards_data white">
+                    <span class="biz-toggle" onclick="toggleBizDetails('velocita')">7-30 giorni</span>
+                    <div id="velocita" class="biz-details">
+                      ✅ 7–30 giorni<br>
+                      Consegniamo in 7-30 giorni grazie al nostro metodo a fasi ottimizzato. PERÒ: richiediamo collaborazione attiva - se rispetti i tempi di feedback concordati, manteniamo la velocità promessa.
+                    </div>
+                  </p>
                 </div>
                 <div data-w-id="e34ba04e-d7c1-c1fb-2b28-5b5f93629441" class="awards_row">
                   <p class="awards_data"><strong class="bold-text-39">Approccio Strategico</strong></p>
                   <p class="awards_data">Minimo</p>
                   <p class="awards_data"><strong class="bold-text-31">Tecnico, senza focus sul cliente finale</strong></p>
                   <p class="awards_data">Dispersivo (fanno di tutto, senza focus profondo)</p>
-                  <p class="awards_data white">Business-centrico + conversioni</p>
+                  <p class="awards_data white">
+                    <span class="biz-toggle" onclick="toggleBizDetails('approccio')">Business-centrico + conversioni</span>
+                    <div id="approccio" class="biz-details">
+                      ✅ Business-centrico + conversioni<br>
+                      Analizziamo il tuo business, studiamo la psicologia del consumatore e ottimizziamo ogni elemento per massimizzare le conversioni. Non facciamo siti "belli e basta" - ogni progetto deve avere senso dal punto di vista del ROI.
+                    </div>
+                  </p>
                 </div>
                 <div data-w-id="e34ba04e-d7c1-c1fb-2b28-5b5f93629446" class="awards_row">
                   <p class="awards_data"><strong class="bold-text-40">Fiducia &amp; Trasparenza</strong></p>
                   <p class="awards_data"><strong class="bold-text-32">Rischio alto </strong></p>
                   <p class="awards_data">Costi nascosti, poca chiarezza contrattuale</p>
                   <p class="awards_data">Contratti rigidi e cavilli</p>
-                  <p class="awards_data white">Contratti chiari, zero sorprese</p>
+                  <p class="awards_data white">
+                    <span class="biz-toggle" onclick="toggleBizDetails('fiducia')">Contratti chiari, zero sorprese</span>
+                    <div id="fiducia" class="biz-details">
+                      ✅ Contratti chiari, zero sorprese<br>
+                      Contratti semplici e chiari, senza clausole nascoste. Se non possiamo fare qualcosa, te lo diciamo subito - non vendiamo quello che non sappiamo fare. Zero progetti lasciati a metà.
+                    </div>
+                  </p>
                 </div>
                 <div data-w-id="e34ba04e-d7c1-c1fb-2b28-5b5f9362944b" class="awards_row">
                   <p class="awards_data"><strong class="bold-text-41">Revisioni</strong></p>
                   <p class="awards_data"><strong class="bold-text-33">1–2 poi extra</strong></p>
                   <p class="awards_data">1–2 inclusi</p>
                   <p class="awards_data">3–5 inclusi</p>
-                  <p class="awards_data white">Revisioni illimitate, fino a consegna </p>
+                  <p class="awards_data white">
+                    <span class="biz-toggle" onclick="toggleBizDetails('revisioni')">Revisioni illimitate, fino a consegna</span>
+                    <div id="revisioni" class="biz-details">
+                      ✅ Revisioni illimitate<br>
+                      Revisioni illimitate fino alla consegna finale, MA con una condizione chiara: devi rispettare i tempi di risposta concordati. Non si torna indietro su step già approvati per iscritto.
+                    </div>
+                  </p>
                 </div>
                 <div data-w-id="e34ba04e-d7c1-c1fb-2b28-5b5f9362944f" class="awards_row linedown">
                   <p class="awards_data"><strong class="bold-text-42">Supporto Post-Lancio</strong></p>
                   <p class="awards_data"><strong class="bold-text-34">Quasi nullo</strong></p>
                   <p class="awards_data">Scarso o assente</p>
                   <p class="awards_data">Pacchetti costosi e vincolanti</p>
-                  <p class="awards_data white">90 giorni inclusi + supporto a vita</p>
+                  <p class="awards_data white">
+                    <span class="biz-toggle" onclick="toggleBizDetails('supporto')">90 giorni inclusi + supporto a vita</span>
+                    <div id="supporto" class="biz-details">
+                      ✅ 90 giorni inclusi + supporto a vita<br>
+                      90 giorni di supporto completo inclusi nel prezzo. Dopo: assistenza tecnica base sempre gratuita per tutta la vita. Evoluzioni o nuove funzionalità con pacchetti chiari e senza vincoli.
+                    </div>
+                  </p>
                 </div>
               </div>
             </div>
@@ -3589,6 +3670,20 @@
       window.initInfiniteVerticalCarousels = initCarousels;
     }
   })();
+  
+  // Funzione per toggle delle voci BizStudio
+  function toggleBizDetails(id) {
+    const details = document.getElementById(id);
+    const toggle = details.previousElementSibling;
+    
+    if (details.classList.contains('show')) {
+      details.classList.remove('show');
+      toggle.classList.remove('expanded');
+    } else {
+      details.classList.add('show');
+      toggle.classList.add('expanded');
+    }
+  }
   </script>
   <script src="js/webflow.js" type="text/javascript"></script>
   <script src="https://cdn.prod.website-files.com/gsap/3.13.0/gsap.min.js" type="text/javascript"></script>
