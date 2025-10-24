@@ -51,21 +51,21 @@
     .review-column {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
-      animation: scrollUp 15s linear infinite;
+      gap: 0.5rem;
+      animation: scrollUp 25s linear infinite;
     }
     
     .review-column:nth-child(2) {
-      animation-delay: -5s;
+      animation-delay: -8s;
     }
     
     .review-column:nth-child(3) {
-      animation-delay: -10s;
+      animation-delay: -16s;
     }
     
     @keyframes scrollUp {
       0% {
-        transform: translateY(100%);
+        transform: translateY(0%);
       }
       100% {
         transform: translateY(-100%);
@@ -1816,6 +1816,51 @@
                       <div class="author-info">
                         <h4>Marco Rossi</h4>
                         <p>Direttore</p>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Duplicate cards for seamless loop -->
+                  <div class="review-card short">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"BizStudio ha trasformato completamente la nostra presenza digitale. Il loro team è professionale e creativo."</p>
+                    <div class="review-author">
+                      <div class="author-avatar"><img src="images/woman-1_1woman-1.webp" alt="Maria Rossi"></div>
+                      <div class="author-info">
+                        <h4>Maria Rossi</h4>
+                        <p>CEO, TechStart</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="review-card tall">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Servizio eccezionale! Hanno creato un sito che supera tutte le nostre aspettative. La loro attenzione ai dettagli e la capacità di comprendere le nostre esigenze è stata impressionante."</p>
+                    <div class="review-author">
+                      <div class="author-avatar"><img src="images/man-1_1man-1.webp" alt="Giuseppe Bianchi"></div>
+                      <div class="author-info">
+                        <h4>Giuseppe Bianchi</h4>
+                        <p>Direttore Marketing</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="review-card medium">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Professionalità e creatività al massimo livello. Consigliatissimi!"</p>
+                    <div class="review-author">
+                      <div class="author-avatar"><img src="images/woman-2_1woman-2.webp" alt="Anna Verdi"></div>
+                      <div class="author-info">
+                        <h4>Anna Verdi</h4>
+                        <p>Fondatrice, InnovateLab</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="review-card short">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Risultati straordinari in tempi record!"</p>
+                    <div class="review-author">
+                      <div class="author-avatar"><img src="images/man-2_1man-2.webp" alt="Roberto Neri"></div>
+                      <div class="author-info">
+                        <h4>Roberto Neri</h4>
+                        <p>Imprenditore</p>
                       </div>
                     </div>
                   </div>
