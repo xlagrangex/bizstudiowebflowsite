@@ -59,7 +59,10 @@
       display: flex; 
       flex-direction: column; 
       will-change: transform;
-      row-gap: var(--iv-gap, 16px);
+    }
+    
+    [data-infinite-vertical="true"] ._iv-track > *:not(:last-child) {
+      margin-bottom: var(--iv-gap, 16px);
     }
 
     [data-infinite-vertical="true"] ._iv-track > * {
