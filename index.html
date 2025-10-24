@@ -193,6 +193,8 @@
     
     .comparison-table tbody tr {
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+      z-index: 10;
     }
     
     .comparison-table th:first-child,
@@ -1058,73 +1060,146 @@
                     <th>FREELANCER</th>
                     <th>WEB AGENCY</th>
                     <th>GRANDE AZIENDA</th>
-                    <th class="bizstudio-col">BIZSTUDIO</th>
+                    <th class="bizstudio-col">
+                      <img src="images/Group 14.png" alt="BizStudio" style="max-width: 120px; height: auto;">
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td><strong>Specializzazione</strong></td>
-                    <td>Solo design, senza strategia</td>
-                    <td>Siti vetrina "pronti all'uso" ma poco performanti</td>
-                    <td>Servizi generalisti (social, grafica, web, pubblicità…)</td>
-                    <td class="bizstudio-col">
-                      <span class="biz-toggle" onclick="toggleBizDetails('specializzazione')">
-                        Solo siti strategici
-                        <span class="toggle-arrow"></span>
-                      </span>
-                      <div id="specializzazione" class="biz-details">
-                        BizStudio si occupa ESCLUSIVAMENTE di siti web strategici: belli, veloci e orientati al business. Non facciamo social, grafica o pubblicità - solo siti che convertono visitatori in clienti.
+               <tr>
+                 <td><strong>Specializzazione</strong></td>
+                 <td>Solo design/creatività, senza strategia</td>
+                 <td>Siti vetrina "pronti all'uso" ma poco performanti</td>
+                 <td>Servizi generalisti (social, grafica, web, pubblicità…)</td>
+                 <td class="bizstudio-col">
+                   <span class="biz-toggle" onclick="toggleBizDetails('specializzazione')">
+                     Solo siti web strategici
+                     <span class="toggle-arrow"></span>
+                   </span>
+                   <div id="specializzazione" class="biz-details">
+                     BizStudio si occupa ESCLUSIVAMENTE di siti web strategici: belli, veloci e orientati al business. Non facciamo social, grafica o pubblicità - solo siti che convertono visitatori in clienti.
                   </div>
-                    </td>
-                  </tr>
+                 </td>
+               </tr>
                   <tr>
                     <td><strong>Rapporto & Comunicazione</strong></td>
                     <td>WhatsApp instabile</td>
                     <td>Telefonate saltuarie</td>
                     <td>Ticket impersonali, linguaggio tecnico</td>
-                    <td class="bizstudio-col">Consulente dedicato</td>
+                    <td class="bizstudio-col">
+                      <span class="biz-toggle" onclick="toggleBizDetails('rapporto')">
+                        Consulente dedicato
+                        <span class="toggle-arrow"></span>
+                      </span>
+                      <div id="rapporto" class="biz-details">
+                        Hai un consulente dedicato che traduce il tecnico in semplice, ti ascolta e ti guida con trasparenza. Comunicazione chiara, diretta, onesta - ti facciamo sentire compreso, non un numero.
+                      </div>
+                    </td>
                   </tr>
                   <tr>
                     <td><strong>Pagamento</strong></td>
                     <td>100% in anticipo</td>
                     <td>Anticipo + saldo (spesso con costi nascosti)</td>
                     <td>Canoni vincolanti e clausole nascoste</td>
-                    <td class="bizstudio-col">Pagamenti a fasi</td>
+                    <td class="bizstudio-col">
+                      <span class="biz-toggle" onclick="toggleBizDetails('pagamento')">
+                        Pagamento a fasi
+                        <span class="toggle-arrow"></span>
+                      </span>
+                      <div id="pagamento" class="biz-details">
+                        Paghi solo dopo approvazione scritta di ogni step. Non devi mai versare l'intero importo in anticipo: ogni fase si paga solo quando è completata e approvata da te per iscritto.
+                      </div>
+                    </td>
                   </tr>
                   <tr>
                     <td><strong>Velocità Consegna</strong></td>
                     <td>1–3 mesi (se non sparisce)</td>
                     <td>1–3 mesi, tempi incerti</td>
                     <td>2–6 mesi (processi lenti e burocratici)</td>
-                    <td class="bizstudio-col">7-30 giorni</td>
+                    <td class="bizstudio-col">
+                      <span class="biz-toggle" onclick="toggleBizDetails('velocita')">
+                        7–30 giorni
+                        <span class="toggle-arrow"></span>
+                      </span>
+                      <div id="velocita" class="biz-details">
+                        Consegniamo in 7-30 giorni grazie al nostro metodo a fasi ottimizzato. PERÒ: richiediamo collaborazione attiva - se rispetti i tempi di feedback concordati, manteniamo la velocità promessa.
+                      </div>
+                    </td>
                   </tr>
                   <tr>
                     <td><strong>Approccio Strategico</strong></td>
-                    <td>Minimo</td>
+                    <td>Estetico, senza pensare al ritorno</td>
                     <td>Tecnico, senza focus sul cliente finale</td>
                     <td>Dispersivo (fanno di tutto, senza focus profondo)</td>
-                    <td class="bizstudio-col">Business-centrico + conversioni</td>
+                    <td class="bizstudio-col">
+                      <span class="biz-toggle" onclick="toggleBizDetails('approccio')">
+                        Business-centrico + conversioni
+                        <span class="toggle-arrow"></span>
+                      </span>
+                      <div id="approccio" class="biz-details">
+                        Analizziamo il tuo business, studiamo la psicologia del consumatore e ottimizziamo ogni elemento per massimizzare le conversioni. Non facciamo siti "belli e basta" - ogni progetto deve avere senso dal punto di vista del ROI.
+                      </div>
+                    </td>
                   </tr>
                   <tr>
                     <td><strong>Fiducia & Trasparenza</strong></td>
-                    <td>Rischio alto</td>
+                    <td>Rischio alto (può sparire)</td>
                     <td>Costi nascosti, poca chiarezza contrattuale</td>
                     <td>Contratti rigidi e cavilli</td>
-                    <td class="bizstudio-col">Contratti chiari, zero sorprese</td>
+                    <td class="bizstudio-col">
+                      <span class="biz-toggle" onclick="toggleBizDetails('fiducia')">
+                        Contratti chiari, zero sorprese
+                        <span class="toggle-arrow"></span>
+                      </span>
+                      <div id="fiducia" class="biz-details">
+                        Contratti semplici e chiari, senza clausole nascoste. Se non possiamo fare qualcosa, te lo diciamo subito - non vendiamo quello che non sappiamo fare. Zero progetti lasciati a metà.
+                      </div>
+                    </td>
                   </tr>
                   <tr>
                     <td><strong>Revisioni</strong></td>
-                    <td>1–2 poi extra</td>
+                    <td>1–2 round poi extra</td>
                     <td>1–2 inclusi</td>
                     <td>3–5 inclusi</td>
-                    <td class="bizstudio-col">Revisioni illimitate, fino a consegna</td>
+                    <td class="bizstudio-col">
+                      <span class="biz-toggle" onclick="toggleBizDetails('revisioni')">
+                        Revisioni illimitate
+                        <span class="toggle-arrow"></span>
+                      </span>
+                      <div id="revisioni" class="biz-details">
+                        Revisioni illimitate fino alla consegna finale, MA con una condizione chiara: devi rispettare i tempi di risposta concordati. Non si torna indietro su step già approvati per iscritto.
+                      </div>
+                    </td>
                   </tr>
                   <tr>
                     <td><strong>Supporto Post-Lancio</strong></td>
                     <td>Quasi nullo</td>
                     <td>Scarso o assente</td>
                     <td>Pacchetti costosi e vincolanti</td>
-                    <td class="bizstudio-col">90 giorni inclusi + supporto a vita</td>
+                    <td class="bizstudio-col">
+                      <span class="biz-toggle" onclick="toggleBizDetails('supporto')">
+                        90 giorni inclusi + supporto a vita
+                        <span class="toggle-arrow"></span>
+                      </span>
+                      <div id="supporto" class="biz-details">
+                        90 giorni di supporto completo inclusi nel prezzo. Dopo: assistenza tecnica base sempre gratuita per tutta la vita. Evoluzioni o nuove funzionalità con pacchetti chiari e senza vincoli.
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Garanzie</strong></td>
+                    <td>Nessuna</td>
+                    <td>Minime</td>
+                    <td>Standard generici</td>
+                    <td class="bizstudio-col">
+                      <span class="biz-toggle" onclick="toggleBizDetails('garanzie')">
+                        Soddisfazione garantita
+                        <span class="toggle-arrow"></span>
+                      </span>
+                      <div id="garanzie" class="biz-details">
+                        Se il sito finale non rispetta quanto concordato nel contratto, lo rifacciamo completamente gratis oppure non lo paghi. Garanzia totale: non lasciamo MAI progetti a metà strada.
+                      </div>
+                    </td>
                   </tr>
                 </tbody>
               </table>
