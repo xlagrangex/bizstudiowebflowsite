@@ -1735,9 +1735,9 @@
               </div>
             </div>
             <div class="ts-right">
-              <div class="reviews-container" data-infinite-vertical="true" data-track-selector=".review-column" data-item-selector=".review-card" data-gap="16" data-speed="48">
+              <div class="reviews-container">
                 <!-- Colonna 1 -->
-                <div class="review-column">
+                <div class="review-column" data-infinite-vertical="true" data-track-selector="self" data-item-selector=".review-card" data-gap="16" data-speed="48">
                   <div class="review-card short">
                     <div class="review-stars">★★★★★</div>
                     <p class="review-text">"BizStudio ha trasformato completamente la nostra presenza digitale. Il loro team è professionale e creativo."</p>
@@ -1918,7 +1918,7 @@
                 </div>
                 
                 <!-- Colonna 2 -->
-                <div class="review-column">
+                <div class="review-column" data-infinite-vertical="true" data-track-selector="self" data-item-selector=".review-card" data-gap="16" data-speed="48">
                   <div class="review-card medium">
                     <div class="review-stars">★★★★★</div>
                     <p class="review-text">"Il risultato finale ha superato ogni nostra aspettativa. Team fantastico!"</p>
@@ -2010,7 +2010,7 @@
                 </div>
                 
                 <!-- Colonna 3 -->
-                <div class="review-column">
+                <div class="review-column" data-infinite-vertical="true" data-track-selector="self" data-item-selector=".review-card" data-gap="16" data-speed="48">
                   <div class="review-card tall">
                     <div class="review-stars">★★★★★</div>
                     <p class="review-text">"Approccio professionale e risultati straordinari. Assolutamente consigliati! La loro capacità di comprendere le nostre esigenze e tradurle in soluzioni digitali innovative è stata eccezionale."</p>
@@ -3349,7 +3349,9 @@
       setupSelectors() {
         // Determina track
         const trackSelector = this.wrapper.dataset.trackSelector;
-        if (trackSelector) {
+        if (trackSelector === 'self') {
+          this.track = this.wrapper;
+        } else if (trackSelector) {
           this.track = this.wrapper.querySelector(trackSelector);
         } else {
           this.track = this.wrapper.querySelector('.reviews-track');
