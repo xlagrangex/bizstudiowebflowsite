@@ -180,6 +180,24 @@
       border-collapse: collapse;
       margin: 20px 0;
       table-layout: fixed;
+      display: table;
+    }
+    
+    .comparison-table thead {
+      display: table-header-group;
+    }
+    
+    .comparison-table tbody {
+      display: table-row-group;
+    }
+    
+    .comparison-table tr {
+      display: table-row;
+    }
+    
+    .comparison-table th,
+    .comparison-table td {
+      display: table-cell;
     }
     
     .comparison-table th,
@@ -203,38 +221,11 @@
         display: table !important;
         width: 100%;
         overflow-x: auto;
-        white-space: nowrap;
-      }
-      
-      .comparison-table thead,
-      .comparison-table tbody {
-        display: table-header-group;
-      }
-      
-      .comparison-table tbody {
-        display: table-row-group;
-      }
-      
-      .comparison-table tr {
-        display: table-row;
-      }
-      
-      .comparison-table thead tr {
-        display: table-row;
-        width: 100%;
-      }
-      
-      .comparison-table tbody tr {
-        display: table-row;
-        width: 100%;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
       }
       
       .comparison-table th,
       .comparison-table td {
-        display: table-cell;
         width: 33.333%;
-        border: 1px solid rgba(255, 255, 255, 0.2);
         padding: 10px;
         text-align: center;
         vertical-align: top;
@@ -278,12 +269,12 @@
       
       .comparison-table th:nth-child(3),
       .comparison-table td:nth-child(3) {
-        display: none;
+        display: none !important;
       }
       
       .comparison-table th:nth-child(4),
       .comparison-table td:nth-child(4) {
-        display: none;
+        display: none !important;
       }
       
       .comparison-table th:nth-child(5),
@@ -1214,7 +1205,7 @@
                       </span>
                       <div id="rapporto" class="biz-details">
                         Hai un consulente dedicato che traduce il tecnico in semplice, ti ascolta e ti guida con trasparenza. Comunicazione chiara, diretta, onesta - ti facciamo sentire compreso, non un numero.
-                      </div>
+                  </div>
                     </td>
                   </tr>
                   <tr>
@@ -1229,7 +1220,7 @@
                       </span>
                       <div id="pagamento" class="biz-details">
                         Paghi solo dopo approvazione scritta di ogni step. Non devi mai versare l'intero importo in anticipo: ogni fase si paga solo quando è completata e approvata da te per iscritto.
-                      </div>
+                  </div>
                     </td>
                   </tr>
                   <tr>
@@ -1244,7 +1235,7 @@
                       </span>
                       <div id="velocita" class="biz-details">
                         Consegniamo in 7-30 giorni grazie al nostro metodo a fasi ottimizzato. PERÒ: richiediamo collaborazione attiva - se rispetti i tempi di feedback concordati, manteniamo la velocità promessa.
-                      </div>
+                  </div>
                     </td>
                   </tr>
                   <tr>
@@ -1259,7 +1250,7 @@
                       </span>
                       <div id="approccio" class="biz-details">
                         Analizziamo il tuo business, studiamo la psicologia del consumatore e ottimizziamo ogni elemento per massimizzare le conversioni. Non facciamo siti "belli e basta" - ogni progetto deve avere senso dal punto di vista del ROI.
-                      </div>
+                </div>
                     </td>
                   </tr>
                   <tr>
@@ -1274,7 +1265,7 @@
                       </span>
                       <div id="fiducia" class="biz-details">
                         Contratti semplici e chiari, senza clausole nascoste. Se non possiamo fare qualcosa, te lo diciamo subito - non vendiamo quello che non sappiamo fare. Zero progetti lasciati a metà.
-                      </div>
+                </div>
                     </td>
                   </tr>
                   <tr>
@@ -1289,7 +1280,7 @@
                       </span>
                       <div id="revisioni" class="biz-details">
                         Revisioni illimitate fino alla consegna finale, MA con una condizione chiara: devi rispettare i tempi di risposta concordati. Non si torna indietro su step già approvati per iscritto.
-                      </div>
+                </div>
                     </td>
                   </tr>
                   <tr>
@@ -1304,7 +1295,7 @@
                       </span>
                       <div id="supporto" class="biz-details">
                         90 giorni di supporto completo inclusi nel prezzo. Dopo: assistenza tecnica base sempre gratuita per tutta la vita. Evoluzioni o nuove funzionalità con pacchetti chiari e senza vincoli.
-                      </div>
+                </div>
                     </td>
                   </tr>
                   <tr>
@@ -1319,7 +1310,7 @@
                       </span>
                       <div id="garanzie" class="biz-details">
                         Se il sito finale non rispetta quanto concordato nel contratto, lo rifacciamo completamente gratis oppure non lo paghi. Garanzia totale: non lasciamo MAI progetti a metà strada.
-                      </div>
+                </div>
                     </td>
                   </tr>
                 </tbody>
