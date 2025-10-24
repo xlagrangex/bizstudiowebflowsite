@@ -1732,7 +1732,7 @@
             <div class="ts-right">
               <div class="reviews-container">
                 <!-- Colonna 1 -->
-                <div class="review-column" data-infinite-vertical="true" data-track-selector="self" data-item-selector=".review-card" data-gap="16" data-speed="48">
+                <div class="review-column" data-infinite-vertical="true" data-track-selector="self" data-item-selector=".review-card" data-gap="32" data-speed="48">
                   <div class="review-card short">
                     <div class="review-stars">★★★★★</div>
                     <p class="review-text">"BizStudio ha trasformato completamente la nostra presenza digitale. Il loro team è professionale e creativo."</p>
@@ -1913,7 +1913,7 @@
                 </div>
                 
                 <!-- Colonna 2 -->
-                <div class="review-column" data-infinite-vertical="true" data-track-selector="self" data-item-selector=".review-card" data-gap="16" data-speed="48">
+                <div class="review-column" data-infinite-vertical="true" data-track-selector="self" data-item-selector=".review-card" data-gap="32" data-speed="48" data-direction="up">
                   <div class="review-card medium">
                     <div class="review-stars">★★★★★</div>
                     <p class="review-text">"Il risultato finale ha superato ogni nostra aspettativa. Team fantastico!"</p>
@@ -2005,7 +2005,7 @@
                 </div>
                 
                 <!-- Colonna 3 -->
-                <div class="review-column" data-infinite-vertical="true" data-track-selector="self" data-item-selector=".review-card" data-gap="16" data-speed="48">
+                <div class="review-column" data-infinite-vertical="true" data-track-selector="self" data-item-selector=".review-card" data-gap="32" data-speed="48">
                   <div class="review-card tall">
                     <div class="review-stars">★★★★★</div>
                     <p class="review-text">"Approccio professionale e risultati straordinari. Assolutamente consigliati! La loro capacità di comprendere le nostre esigenze e tradurle in soluzioni digitali innovative è stata eccezionale."</p>
@@ -3328,6 +3328,7 @@
         // Imposta parametri
         this.speed = parseInt(this.wrapper.dataset.speed) || 48;
         this.gap = parseInt(this.wrapper.dataset.gap) || 16;
+        this.direction = this.wrapper.dataset.direction || 'down';
         
         // Setup CSS
         this.setupCSS();
@@ -3480,12 +3481,19 @@
         const deltaTime = (now - this.lastTime) / 1000;
         this.lastTime = now;
         
-        // Aggiorna posizione
-        this.offsetY -= this.speed * deltaTime;
-        
-        // Wrap quando necessario
-        if (this.offsetY <= -this.originalHeight) {
-          this.offsetY += this.originalHeight;
+        // Aggiorna posizione in base alla direzione
+        if (this.direction === 'up') {
+          this.offsetY += this.speed * deltaTime;
+          // Wrap quando necessario (verso l'alto)
+          if (this.offsetY >= this.originalHeight) {
+            this.offsetY -= this.originalHeight;
+          }
+        } else {
+          this.offsetY -= this.speed * deltaTime;
+          // Wrap quando necessario (verso il basso)
+          if (this.offsetY <= -this.originalHeight) {
+            this.offsetY += this.originalHeight;
+          }
         }
         
         // Applica trasformazione
