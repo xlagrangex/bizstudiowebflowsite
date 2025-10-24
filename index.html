@@ -212,6 +212,25 @@
       position: relative;
     }
     
+    /* Forza i limiti delle colonne della tabella */
+    .awards_row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+    
+    .awards_data {
+      position: relative;
+      overflow: visible;
+    }
+    
+    /* Assicura che la quinta colonna (BizStudio) abbia i suoi limiti */
+    .awards_data.white {
+      grid-column: 5;
+      position: relative;
+    }
+    
     /* Responsive */
     @media (max-width: 768px) {
       .reviews-container {
