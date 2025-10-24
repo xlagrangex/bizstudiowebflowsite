@@ -66,11 +66,6 @@
       flex: 0 0 auto;
     }
 
-    /* Pausa su hover/focus */
-    [data-infinite-vertical="true"]:hover ._iv-track,
-    [data-infinite-vertical="true"]:focus-within ._iv-track {
-      animation-play-state: paused;
-    }
 
     /* Rispetta prefers-reduced-motion */
     @media (prefers-reduced-motion: reduce) {
@@ -3500,12 +3495,6 @@
       }
       
       setupEvents() {
-        // Pausa su hover/focus
-        this.wrapper.addEventListener('mouseenter', () => this.pause());
-        this.wrapper.addEventListener('mouseleave', () => this.resume());
-        this.wrapper.addEventListener('focusin', () => this.pause());
-        this.wrapper.addEventListener('focusout', () => this.resume());
-        
         // Resize con debounce
         let resizeTimeout;
         window.addEventListener('resize', () => {
