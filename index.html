@@ -36,6 +36,136 @@
     div[style*="position: fixed"][style*="bottom"][style*="right"] {
       display: none !important;
     }
+    
+    /* Reviews Section Styles */
+    .reviews-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 0;
+      position: relative;
+    }
+    
+    .review-column {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      animation: scrollUp 20s linear infinite;
+    }
+    
+    .review-column:nth-child(2) {
+      animation-delay: -7s;
+    }
+    
+    .review-column:nth-child(3) {
+      animation-delay: -14s;
+    }
+    
+    @keyframes scrollUp {
+      0% {
+        transform: translateY(100%);
+      }
+      100% {
+        transform: translateY(-100%);
+      }
+    }
+    
+    .review-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+    
+    .review-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .review-stars {
+      color: #ffd700;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    
+    .review-text {
+      color: #ffffff;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+    
+    .review-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .author-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .author-info h4 {
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0 0 0.25rem 0;
+    }
+    
+    .author-info p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.85rem;
+      margin: 0;
+    }
+    
+    /* Gradient fade effect */
+    .reviews-container::before,
+    .reviews-container::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 50px;
+      z-index: 10;
+      pointer-events: none;
+    }
+    
+    .reviews-container::before {
+      top: 0;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+    }
+    
+    .reviews-container::after {
+      bottom: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .reviews-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      
+      .review-column {
+        animation: none;
+      }
+    }
   </style>
 </head>
 <body class="body">
@@ -1585,18 +1715,126 @@
               </div>
             </div>
             <div class="ts-right">
-              <div class="tsr-left infinite-scroll-1">
-                <div data-w-id="d5c4a080-e7a8-6461-4354-16d736f53d24" class="brands_list-wrapper vertical">
-                  <div style="-webkit-transform:translate3d(0, 0%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="brands_list vertical">
-                    <div class="brands_item-block">
-                      <div class="brands_item-logo-wrap _2"><img src="images/logo-1.svg" loading="lazy" alt="" class="brands_item-logo _1"></div>
-                      <div class="brands_item-texts">
-                        <h4 class="brands_item-name">Loreipsum</h4>
-                        <p class="brands_item-desc">Lorem ipsum dolor sit amet, consectetur.</p>
+              <div class="reviews-container">
+                <!-- Colonna 1 -->
+                <div class="review-column">
+                  <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"BizStudio ha trasformato completamente la nostra presenza digitale. Il loro team è professionale e creativo."</p>
+                    <div class="review-author">
+                      <div class="author-avatar"><img src="images/woman-1_1woman-1.webp" alt="Maria Rossi"></div>
+                      <div class="author-info">
+                        <h4>Maria Rossi</h4>
+                        <p>CEO, TechStart</p>
                       </div>
                     </div>
-                    <div class="brands_item-block">
-                      <div class="brands_item-logo-wrap _2"><img src="images/logo-2.svg" loading="lazy" alt="" class="brands_item-logo _1"></div>
+                  </div>
+                  <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Servizio eccezionale! Hanno creato un sito che supera tutte le nostre aspettative."</p>
+                    <div class="review-author">
+                      <div class="author-avatar"><img src="images/man-1_1man-1.webp" alt="Giuseppe Bianchi"></div>
+                      <div class="author-info">
+                        <h4>Giuseppe Bianchi</h4>
+                        <p>Direttore Marketing</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Professionalità e creatività al massimo livello. Consigliatissimi!"</p>
+                    <div class="review-author">
+                      <div class="author-avatar"><img src="images/woman-2_1woman-2.webp" alt="Anna Verdi"></div>
+                      <div class="author-info">
+                        <h4>Anna Verdi</h4>
+                        <p>Fondatrice, InnovateLab</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Colonna 2 -->
+                <div class="review-column">
+                  <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Il risultato finale ha superato ogni nostra aspettativa. Team fantastico!"</p>
+                    <div class="review-author">
+                      <div class="author-avatar"><img src="images/man-2_1man-2.webp" alt="Marco Neri"></div>
+                      <div class="author-info">
+                        <h4>Marco Neri</h4>
+                        <p>CTO, Digital Solutions</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"BizStudio ha reso il nostro brand più forte e riconoscibile online."</p>
+                    <div class="review-author">
+                      <div class="author-avatar"><img src="images/woman-3_1woman-3.webp" alt="Laura Blu"></div>
+                      <div class="author-info">
+                        <h4>Laura Blu</h4>
+                        <p>Brand Manager</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Competenza tecnica e creatività uniche. Progetto perfetto!"</p>
+                    <div class="review-author">
+                      <div class="author-avatar"><img src="images/man-3_1man-3.webp" alt="Paolo Gialli"></div>
+                      <div class="author-info">
+                        <h4>Paolo Gialli</h4>
+                        <p>Imprenditore</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Colonna 3 -->
+                <div class="review-column">
+                  <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Approccio professionale e risultati straordinari. Assolutamente consigliati!"</p>
+                    <div class="review-author">
+                      <div class="author-avatar"><img src="images/woman-4_1woman-4.webp" alt="Sofia Rossi"></div>
+                      <div class="author-info">
+                        <h4>Sofia Rossi</h4>
+                        <p>Marketing Director</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Hanno trasformato la nostra visione in realtà digitale. Incredibile!"</p>
+                    <div class="review-author">
+                      <div class="author-avatar"><img src="images/man-4_1man-4.webp" alt="Alessandro Verde"></div>
+                      <div class="author-info">
+                        <h4>Alessandro Verde</h4>
+                        <p>CEO, FutureTech</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Qualità e attenzione ai dettagli eccezionali. Team di professionisti!"</p>
+                    <div class="review-author">
+                      <div class="author-avatar"><img src="images/woman-1_2woman-1.webp" alt="Elena Bianchi"></div>
+                      <div class="author-info">
+                        <h4>Elena Bianchi</h4>
+                        <p>Creative Director</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section_showreel none">
+        <div data-w-id="54958a20-ac41-e719-19b6-10b9a9315b9a" class="showreel_wrap">
+          <div class="showreel_scroll-note">scendi giù</div>
+          <div class="showreel_sticky">
                       <div class="brands_item-texts">
                         <h4 class="brands_item-name">Loreipsum</h4>
                         <p class="brands_item-desc">Lorem ipsum dolor sit amet, consectetur.</p>
