@@ -48,27 +48,34 @@
       position: relative;
     }
     
-    .review-column {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      animation: scrollUp 25s linear infinite;
+    /* CSS per retrofit caroselli infiniti */
+    [data-infinite-vertical="true"] { 
+      overflow: hidden; 
+      width: 100%; 
+      position: relative;
     }
-    
-    .review-column:nth-child(2) {
-      animation-delay: -8s;
+
+    [data-infinite-vertical="true"] ._iv-track { 
+      display: flex; 
+      flex-direction: column; 
+      will-change: transform;
+      row-gap: var(--iv-gap, 16px);
     }
-    
-    .review-column:nth-child(3) {
-      animation-delay: -16s;
+
+    [data-infinite-vertical="true"] ._iv-track > * {
+      flex: 0 0 auto;
     }
-    
-    @keyframes scrollUp {
-      0% {
-        transform: translateY(0%);
-      }
-      100% {
-        transform: translateY(-100%);
+
+    /* Pausa su hover/focus */
+    [data-infinite-vertical="true"]:hover ._iv-track,
+    [data-infinite-vertical="true"]:focus-within ._iv-track {
+      animation-play-state: paused;
+    }
+
+    /* Rispetta prefers-reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      [data-infinite-vertical="true"] ._iv-track {
+        animation: none !important;
       }
     }
     
@@ -1728,7 +1735,7 @@
               </div>
             </div>
             <div class="ts-right">
-              <div class="reviews-container">
+              <div class="reviews-container" data-infinite-vertical="true" data-track-selector=".review-column" data-item-selector=".review-card" data-gap="16" data-speed="48">
                 <!-- Colonna 1 -->
                 <div class="review-column">
                   <div class="review-card short">
@@ -3294,6 +3301,289 @@
     </footer>
   </div>
   <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=68a582592c519b02fa2115e9" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  
+  <script>
+  (function() {
+    'use strict';
+    
+    // Webflow retrofit - Infinite Vertical Carousel
+    class InfiniteVerticalCarousel {
+      constructor(wrapper) {
+        this.wrapper = wrapper;
+        this.track = null;
+        this.items = [];
+        this.originals = [];
+        this.clones = [];
+        this.animationId = null;
+        this.offsetY = 0;
+        this.speed = 48; // px/sec
+        this.gap = 16;
+        this.originalHeight = 0;
+        this.isPaused = false;
+        this.isDestroyed = false;
+        
+        this.init();
+      }
+      
+      init() {
+        // Determina track e items
+        this.setupSelectors();
+        if (!this.track || this.items.length < 1) return;
+        
+        // Imposta parametri
+        this.speed = parseInt(this.wrapper.dataset.speed) || 48;
+        this.gap = parseInt(this.wrapper.dataset.gap) || 16;
+        
+        // Setup CSS
+        this.setupCSS();
+        
+        // Attendi caricamento
+        this.waitForReady().then(() => {
+          this.measure();
+          this.build();
+          this.start();
+          this.setupEvents();
+        });
+      }
+      
+      setupSelectors() {
+        // Determina track
+        const trackSelector = this.wrapper.dataset.trackSelector;
+        if (trackSelector) {
+          this.track = this.wrapper.querySelector(trackSelector);
+        } else {
+          this.track = this.wrapper.querySelector('.reviews-track');
+        }
+        
+        // Determina items
+        const itemSelector = this.wrapper.dataset.itemSelector;
+        if (itemSelector) {
+          this.items = Array.from(this.wrapper.querySelectorAll(itemSelector));
+        } else {
+          this.items = Array.from(this.wrapper.querySelectorAll('.review-card'));
+        }
+        
+        // Filtra solo originali (no cloni)
+        this.originals = this.items.filter(item => !item.dataset.clone);
+      }
+      
+      setupCSS() {
+        // Aggiungi classe interna al track
+        this.track.classList.add('_iv-track');
+        
+        // Imposta gap via CSS variable
+        this.track.style.setProperty('--iv-gap', this.gap + 'px');
+        
+        // Rimuovi eventuali transizioni conflittuali
+        this.track.style.transition = 'none';
+        this.track.style.animation = 'none';
+      }
+      
+      async waitForReady() {
+        // Attendi immagini
+        const images = this.wrapper.querySelectorAll('img');
+        if (images.length > 0) {
+          await Promise.all(Array.from(images).map(img => {
+            if (img.complete) return Promise.resolve();
+            return new Promise(resolve => {
+              img.onload = img.onerror = resolve;
+            });
+          }));
+        }
+        
+        // Attendi font se disponibile
+        if (document.fonts && document.fonts.ready) {
+          await document.fonts.ready;
+        }
+        
+        // Piccolo delay per layout
+        await new Promise(resolve => setTimeout(resolve, 100));
+      }
+      
+      measure() {
+        // Misura altezza originale
+        this.originalHeight = this.measureOriginalHeight();
+        
+        // Se meno di 2 items, duplica per continuità
+        if (this.originals.length < 2) {
+          this.duplicateItems();
+        }
+      }
+      
+      measureOriginalHeight() {
+        let totalHeight = 0;
+        this.originals.forEach((item, index) => {
+          const rect = item.getBoundingClientRect();
+          totalHeight += rect.height;
+          if (index < this.originals.length - 1) {
+            totalHeight += this.gap;
+          }
+        });
+        return totalHeight;
+      }
+      
+      duplicateItems() {
+        // Duplica items se necessario
+        const duplicates = this.originals.map(item => item.cloneNode(true));
+        duplicates.forEach(dup => {
+          dup.dataset.clone = '1';
+          this.track.appendChild(dup);
+        });
+        this.originals.push(...duplicates);
+      }
+      
+      build() {
+        // Calcola altezza minima per viewport
+        const wrapperRect = this.wrapper.getBoundingClientRect();
+        const minHeight = wrapperRect.height * 2.2;
+        
+        // Rimuovi cloni vecchi
+        this.removeClones();
+        
+        // Aggiungi cloni finché necessario
+        this.buildClones(minHeight);
+      }
+      
+      removeClones() {
+        const oldClones = this.track.querySelectorAll('[data-clone="1"]');
+        oldClones.forEach(clone => clone.remove());
+      }
+      
+      buildClones(minHeight) {
+        let currentHeight = this.originalHeight;
+        const clones = [];
+        
+        while (currentHeight < minHeight) {
+          this.originals.forEach(item => {
+            const clone = item.cloneNode(true);
+            clone.dataset.clone = '1';
+            this.track.appendChild(clone);
+            clones.push(clone);
+          });
+          currentHeight += this.originalHeight;
+        }
+        
+        this.clones = clones;
+      }
+      
+      start() {
+        if (this.isDestroyed) return;
+        this.animate();
+      }
+      
+      animate() {
+        if (this.isDestroyed || this.isPaused) {
+          this.animationId = requestAnimationFrame(() => this.animate());
+          return;
+        }
+        
+        const now = performance.now();
+        if (!this.lastTime) this.lastTime = now;
+        
+        const deltaTime = (now - this.lastTime) / 1000;
+        this.lastTime = now;
+        
+        // Aggiorna posizione
+        this.offsetY -= this.speed * deltaTime;
+        
+        // Wrap quando necessario
+        if (this.offsetY <= -this.originalHeight) {
+          this.offsetY += this.originalHeight;
+        }
+        
+        // Applica trasformazione
+        this.track.style.transform = `translate3d(0, ${this.offsetY}px, 0)`;
+        
+        this.animationId = requestAnimationFrame(() => this.animate());
+      }
+      
+      setupEvents() {
+        // Pausa su hover/focus
+        this.wrapper.addEventListener('mouseenter', () => this.pause());
+        this.wrapper.addEventListener('mouseleave', () => this.resume());
+        this.wrapper.addEventListener('focusin', () => this.pause());
+        this.wrapper.addEventListener('focusout', () => this.resume());
+        
+        // Resize con debounce
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+          clearTimeout(resizeTimeout);
+          resizeTimeout = setTimeout(() => this.handleResize(), 150);
+        });
+        
+        // Rispetta prefers-reduced-motion
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          this.pause();
+        }
+      }
+      
+      handleResize() {
+        this.stop();
+        this.measure();
+        this.build();
+        this.start();
+      }
+      
+      pause() {
+        this.isPaused = true;
+      }
+      
+      resume() {
+        this.isPaused = false;
+      }
+      
+      stop() {
+        if (this.animationId) {
+          cancelAnimationFrame(this.animationId);
+          this.animationId = null;
+        }
+      }
+      
+      destroy() {
+        this.isDestroyed = true;
+        this.stop();
+        this.removeClones();
+        this.track.classList.remove('_iv-track');
+        this.track.style.transform = '';
+        this.track.style.setProperty('--iv-gap', '');
+        this.wrapper.__reviewsCarousel = null;
+      }
+      
+      // API pubblica
+      getInstance() {
+        return {
+          pause: () => this.pause(),
+          resume: () => this.resume(),
+          destroy: () => this.destroy()
+        };
+      }
+    }
+    
+    // Inizializzazione
+    function initCarousels() {
+      const wrappers = document.querySelectorAll('[data-infinite-vertical="true"], .reviews-carousel');
+      
+      wrappers.forEach(wrapper => {
+        if (wrapper.__reviewsCarousel) return; // Già inizializzato
+        
+        const carousel = new InfiniteVerticalCarousel(wrapper);
+        wrapper.__reviewsCarousel = carousel.getInstance();
+      });
+    }
+    
+    // Auto-inizializzazione
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initCarousels);
+    } else {
+      initCarousels();
+    }
+    
+    // Re-inizializzazione per contenuti dinamici
+    if (typeof window !== 'undefined') {
+      window.initInfiniteVerticalCarousels = initCarousels;
+    }
+  })();
+  </script>
   <script src="js/webflow.js" type="text/javascript"></script>
   <script src="https://cdn.prod.website-files.com/gsap/3.13.0/gsap.min.js" type="text/javascript"></script>
   <script src="https://cdn.prod.website-files.com/gsap/3.13.0/Flip.min.js" type="text/javascript"></script>
