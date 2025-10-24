@@ -59,6 +59,7 @@
       display: flex; 
       flex-direction: column; 
       will-change: transform;
+      transform: translateZ(0);
     }
     
     /* Spacing forzato per le card */
@@ -78,15 +79,32 @@
       }
     }
     
+    /* Performance optimizations */
+    * {
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+    
+    .review-card:hover {
+      transform: translateY(-5px) translateZ(0);
+    }
+    
+    /* GPU acceleration for smooth animations */
+    [data-infinite-vertical="true"] {
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+    }
+    
     .review-card {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(5px);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 16px;
       padding: 1.5rem;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease;
       min-height: 200px;
+      will-change: transform;
     }
     
     .review-card.short {
@@ -3285,6 +3303,12 @@
         const deltaTime = (now - this.lastTime) / 1000;
         this.lastTime = now;
         
+        // Throttle per ridurre il carico CPU
+        if (deltaTime < 0.016) {
+          this.animationId = requestAnimationFrame(() => this.animate());
+          return;
+        }
+        
         // Aggiorna posizione in base alla direzione
         if (this.direction === 'up') {
           this.offsetY += this.speed * deltaTime;
@@ -3300,8 +3324,8 @@
           }
         }
         
-        // Applica trasformazione
-        this.track.style.transform = `translate3d(0, ${this.offsetY}px, 0)`;
+        // Applica trasformazione con GPU acceleration
+        this.track.style.transform = `translate3d(0, ${Math.round(this.offsetY)}px, 0)`;
         
         this.animationId = requestAnimationFrame(() => this.animate());
       }
@@ -3425,19 +3449,71 @@
   <script src="https://cdn.prod.website-files.com/gsap/3.13.0/EasePack.min.js" type="text/javascript"></script>
   <script type="text/javascript">gsap.registerPlugin(Flip,ScrollTrigger,SplitText,Draggable,DrawSVGPlugin,InertiaPlugin,MorphSVGPlugin,MotionPathPlugin,MotionPathHelper,Observer,Physics2DPlugin,PhysicsPropsPlugin,ScrambleTextPlugin,ScrollToPlugin,ScrollSmoother,TextPlugin,CustomEase,CustomBounce,CustomWiggle,EasePack);</script><!--  Lennis setup  -->
   <script>
-// Initialize Lenis
+// Initialize Lenis with performance optimizations
 const lenis = new Lenis({
   smooth: true,
-  lerp: .1,
-  wheelMultiplier: 1,
+  lerp: .08,
+  wheelMultiplier: 0.8,
   infinite: false,
+  syncTouch: true,
+  touchMultiplier: 2,
 });
-// Use requestAnimationFrame to continuously update the scroll
+// Use requestAnimationFrame to continuously update the scroll with throttling
+let lastTime = 0;
 function raf(time) {
-  lenis.raf(time);
+  const deltaTime = time - lastTime;
+  if (deltaTime >= 16) { // Throttle to ~60fps
+    lenis.raf(time);
+    lastTime = time;
+  }
   requestAnimationFrame(raf);
 }
 requestAnimationFrame(raf);
+</script>
+
+<!-- Performance optimizations -->
+<script>
+// Lazy loading for images
+document.addEventListener('DOMContentLoaded', function() {
+  const images = document.querySelectorAll('img[data-src]');
+  const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        img.src = img.dataset.src;
+        img.classList.remove('lazy');
+        observer.unobserve(img);
+      }
+    });
+  });
+  
+  images.forEach(img => imageObserver.observe(img));
+});
+
+// Throttle scroll events
+let scrollTimeout;
+window.addEventListener('scroll', function() {
+  if (!scrollTimeout) {
+    scrollTimeout = setTimeout(function() {
+      scrollTimeout = null;
+    }, 16);
+  }
+});
+
+// Optimize animations when tab is not visible
+document.addEventListener('visibilitychange', function() {
+  if (document.hidden) {
+    // Pause heavy animations when tab is not visible
+    document.querySelectorAll('[data-infinite-vertical="true"]').forEach(el => {
+      el.style.animationPlayState = 'paused';
+    });
+  } else {
+    // Resume animations when tab becomes visible
+    document.querySelectorAll('[data-infinite-vertical="true"]').forEach(el => {
+      el.style.animationPlayState = 'running';
+    });
+  }
+});
 </script>
 </body>
 </html>
