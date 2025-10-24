@@ -3402,6 +3402,9 @@
         // Misura altezza originale
         this.originalHeight = this.measureOriginalHeight();
         
+        // Inizializza offset in base alla direzione
+        this.offsetY = this.direction === 'up' ? -this.originalHeight : 0;
+        
         // Se meno di 2 items, duplica per continuità
         if (this.originals.length < 2) {
           this.duplicateItems();
@@ -3485,7 +3488,7 @@
         if (this.direction === 'up') {
           this.offsetY += this.speed * deltaTime;
           // Wrap quando necessario (verso l'alto)
-          if (this.offsetY >= this.originalHeight) {
+          if (this.offsetY >= 0) {
             this.offsetY -= this.originalHeight;
           }
         } else {
