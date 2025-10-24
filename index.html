@@ -60,6 +60,10 @@
   <link rel="preload" href="css/bizstudio-agency.webflow.css" as="style">
   <link rel="preload" href="js/webflow.js" as="script">
   <link rel="preload" href="images/logo-bizstudio.svg" as="image">
+  <link rel="preload" href="https://cdn.prod.website-files.com/gsap/3.13.0/gsap.min.js" as="script">
+  <link rel="preload" href="https://cdn.prod.website-files.com/gsap/3.13.0/ScrollTrigger.min.js" as="script">
+  <link rel="dns-prefetch" href="//cdn.prod.website-files.com">
+  <link rel="dns-prefetch" href="//d3e54v103j8qbb.cloudfront.net">
   <link rel="manifest" href="/manifest.json">
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
@@ -3684,7 +3688,7 @@
     }
   }
   </script>
-  <script src="js/webflow.js" type="text/javascript" defer></script>
+  <script src="js/webflow.js" type="text/javascript" defer async></script>
   <script src="https://cdn.prod.website-files.com/gsap/3.13.0/gsap.min.js" type="text/javascript" defer></script>
   <script src="https://cdn.prod.website-files.com/gsap/3.13.0/Flip.min.js" type="text/javascript" defer></script>
   <script src="https://cdn.prod.website-files.com/gsap/3.13.0/ScrollTrigger.min.js" type="text/javascript" defer></script>
@@ -3744,9 +3748,26 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.unobserve(img);
       }
     });
+  }, {
+    rootMargin: '50px 0px',
+    threshold: 0.01
   });
   
   images.forEach(img => imageObserver.observe(img));
+  
+  /* Preload critical images */
+  const criticalImages = [
+    'images/logo-bizstudio.svg',
+    'images/hero-image.webp'
+  ];
+  
+  criticalImages.forEach(src => {
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
+    link.href = src;
+    document.head.appendChild(link);
+  });
 });
 
 // Throttle scroll events
