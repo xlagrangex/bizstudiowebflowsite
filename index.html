@@ -200,34 +200,41 @@
     /* Mobile responsive - 3 colonne */
     @media (max-width: 768px) {
       .comparison-table {
-        display: block;
+        display: table !important;
+        width: 100%;
         overflow-x: auto;
         white-space: nowrap;
       }
       
       .comparison-table thead,
-      .comparison-table tbody,
+      .comparison-table tbody {
+        display: table-header-group;
+      }
+      
+      .comparison-table tbody {
+        display: table-row-group;
+      }
+      
       .comparison-table tr {
-        display: block;
+        display: table-row;
       }
       
       .comparison-table thead tr {
-        display: flex;
+        display: table-row;
         width: 100%;
       }
       
       .comparison-table tbody tr {
-        display: flex;
+        display: table-row;
         width: 100%;
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        padding: 15px 0;
       }
       
       .comparison-table th,
       .comparison-table td {
-        display: block;
+        display: table-cell;
         width: 33.333%;
-        border: none;
+        border: 1px solid rgba(255, 255, 255, 0.2);
         padding: 10px;
         text-align: center;
         vertical-align: top;
@@ -1170,7 +1177,7 @@
                 </thead>
                 
                 <!-- Mobile header -->
-                <thead class="mobile-header" style="display: none;">
+                <thead class="mobile-header">
                   <tr>
                     <th></th>
                     <th>LA CONCORRENZA</th>
