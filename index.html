@@ -197,6 +197,109 @@
       z-index: 10;
     }
     
+    /* Mobile responsive - 3 colonne */
+    @media (max-width: 768px) {
+      .comparison-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+      
+      .comparison-table thead,
+      .comparison-table tbody,
+      .comparison-table tr {
+        display: block;
+      }
+      
+      .comparison-table thead tr {
+        display: flex;
+        width: 100%;
+      }
+      
+      .comparison-table tbody tr {
+        display: flex;
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 15px 0;
+      }
+      
+      .comparison-table th,
+      .comparison-table td {
+        display: block;
+        width: 33.333%;
+        border: none;
+        padding: 10px;
+        text-align: center;
+        vertical-align: top;
+      }
+      
+      .comparison-table th:first-child,
+      .comparison-table td:first-child {
+        text-align: left;
+        font-weight: bold;
+      }
+      
+      .comparison-table th:nth-child(2),
+      .comparison-table td:nth-child(2) {
+        background: rgba(255, 255, 255, 0.05);
+        border-left: 1px solid rgba(255, 255, 255, 0.2);
+        border-right: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      
+      /* Contenuto generico per la concorrenza su mobile */
+      .comparison-table td:nth-child(2) {
+        position: relative;
+      }
+      
+      .comparison-table td:nth-child(2)::after {
+        content: "Problemi comuni della concorrenza: mancanza di strategia, tempi lunghi, costi nascosti, supporto scarso";
+        display: block;
+        font-size: 0.9rem;
+        line-height: 1.4;
+        color: rgba(255, 255, 255, 0.7);
+        margin-top: 8px;
+      }
+      
+      /* Nascondi il contenuto originale su mobile */
+      .comparison-table td:nth-child(2) {
+        font-size: 0;
+      }
+      
+      .comparison-table td:nth-child(2)::after {
+        font-size: 0.9rem;
+      }
+      
+      .comparison-table th:nth-child(3),
+      .comparison-table td:nth-child(3) {
+        display: none;
+      }
+      
+      .comparison-table th:nth-child(4),
+      .comparison-table td:nth-child(4) {
+        display: none;
+      }
+      
+      .comparison-table th:nth-child(5),
+      .comparison-table td:nth-child(5) {
+        width: 33.333%;
+      }
+      
+      /* Aggiorna il gradiente per la colonna BizStudio (ora 3a colonna) */
+      .comparison-table::after {
+        width: 33.333%;
+        right: 0;
+      }
+      
+      /* Mostra header mobile, nascondi desktop */
+      .comparison-table thead:first-of-type {
+        display: none;
+      }
+      
+      .comparison-table .mobile-header {
+        display: table-header-group !important;
+      }
+    }
+    
     .comparison-table th:first-child,
     .comparison-table td:first-child {
       width: 20%;
@@ -1065,12 +1168,23 @@
                     </th>
                   </tr>
                 </thead>
+                
+                <!-- Mobile header -->
+                <thead class="mobile-header" style="display: none;">
+                  <tr>
+                    <th></th>
+                    <th>LA CONCORRENZA</th>
+                    <th class="bizstudio-col">
+                      <img src="images/Group 14.png" alt="BizStudio" style="max-width: 80px; height: auto;">
+                    </th>
+                  </tr>
+                </thead>
                 <tbody>
                <tr>
-                 <td><strong>Specializzazione</strong></td>
-                 <td>Solo design/creatività, senza strategia</td>
-                 <td>Siti vetrina "pronti all'uso" ma poco performanti</td>
-                 <td>Servizi generalisti (social, grafica, web, pubblicità…)</td>
+                 <td><strong><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; margin-right: 8px; vertical-align: middle;"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>Specializzazione</strong></td>
+                 <td class="competition-col">Solo design, senza strategia</td>
+                 <td class="competition-col">Siti vetrina "pronti all'uso" ma poco performanti</td>
+                 <td class="competition-col">Servizi generalisti (social, grafica, web, pubblicità…)</td>
                  <td class="bizstudio-col">
                    <span class="biz-toggle" onclick="toggleBizDetails('specializzazione')">
                      Solo siti web strategici
@@ -1082,10 +1196,10 @@
                  </td>
                </tr>
                   <tr>
-                    <td><strong>Rapporto & Comunicazione</strong></td>
-                    <td>WhatsApp instabile</td>
-                    <td>Telefonate saltuarie</td>
-                    <td>Ticket impersonali, linguaggio tecnico</td>
+                    <td><strong><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; margin-right: 8px; vertical-align: middle;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Rapporto & Comunicazione</strong></td>
+                    <td class="competition-col">WhatsApp instabile</td>
+                    <td class="competition-col">Telefonate saltuarie</td>
+                    <td class="competition-col">Ticket impersonali, linguaggio tecnico</td>
                     <td class="bizstudio-col">
                       <span class="biz-toggle" onclick="toggleBizDetails('rapporto')">
                         Consulente dedicato
@@ -1097,7 +1211,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td><strong>Pagamento</strong></td>
+                    <td><strong><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; margin-right: 8px; vertical-align: middle;"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Pagamento</strong></td>
                     <td>100% in anticipo</td>
                     <td>Anticipo + saldo (spesso con costi nascosti)</td>
                     <td>Canoni vincolanti e clausole nascoste</td>
@@ -1112,7 +1226,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td><strong>Velocità Consegna</strong></td>
+                    <td><strong><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; margin-right: 8px; vertical-align: middle;"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/></svg>Velocità Consegna</strong></td>
                     <td>1–3 mesi (se non sparisce)</td>
                     <td>1–3 mesi, tempi incerti</td>
                     <td>2–6 mesi (processi lenti e burocratici)</td>
@@ -1127,7 +1241,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td><strong>Approccio Strategico</strong></td>
+                    <td><strong><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; margin-right: 8px; vertical-align: middle;"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1 .34-4.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0-.34-4.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/></svg>Approccio Strategico</strong></td>
                     <td>Estetico, senza pensare al ritorno</td>
                     <td>Tecnico, senza focus sul cliente finale</td>
                     <td>Dispersivo (fanno di tutto, senza focus profondo)</td>
@@ -1142,7 +1256,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td><strong>Fiducia & Trasparenza</strong></td>
+                    <td><strong><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; margin-right: 8px; vertical-align: middle;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Fiducia & Trasparenza</strong></td>
                     <td>Rischio alto (può sparire)</td>
                     <td>Costi nascosti, poca chiarezza contrattuale</td>
                     <td>Contratti rigidi e cavilli</td>
@@ -1157,7 +1271,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td><strong>Revisioni</strong></td>
+                    <td><strong><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; margin-right: 8px; vertical-align: middle;"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/></svg>Revisioni</strong></td>
                     <td>1–2 round poi extra</td>
                     <td>1–2 inclusi</td>
                     <td>3–5 inclusi</td>
@@ -1172,7 +1286,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td><strong>Supporto Post-Lancio</strong></td>
+                    <td><strong><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; margin-right: 8px; vertical-align: middle;"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>Supporto Post-Lancio</strong></td>
                     <td>Quasi nullo</td>
                     <td>Scarso o assente</td>
                     <td>Pacchetti costosi e vincolanti</td>
@@ -1187,7 +1301,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td><strong>Garanzie</strong></td>
+                    <td><strong><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; margin-right: 8px; vertical-align: middle;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Garanzie</strong></td>
                     <td>Nessuna</td>
                     <td>Minime</td>
                     <td>Standard generici</td>
