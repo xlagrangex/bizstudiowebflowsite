@@ -254,6 +254,39 @@
     }
     
     /* Reviews Section Styles */
+    .reviews-section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 0 2rem;
+    }
+    
+    .reviews-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    .reviews-subtitle {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin: 0;
+      font-weight: 400;
+      line-height: 1.4;
+    }
+    
+    @media (max-width: 768px) {
+      .reviews-title {
+        font-size: 2rem;
+      }
+      
+      .reviews-subtitle {
+        font-size: 1rem;
+      }
+    }
+    
     .reviews-container {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -2182,7 +2215,8 @@
               </div>
             </div>
             <div class="ts-right">
-              <div class="reviews-container">
+              <!-- SEZIONE RECENSIONI CLIENTI BIZSTUDIO - TESTIMONIANZE REALI -->
+              <div class="reviews-container" style="display: none;">
                 <!-- Colonna 1 -->
                 <div class="review-column" data-infinite-vertical="true" data-track-selector="self" data-item-selector=".review-card" data-gap="40" data-speed="48">
                   <div class="review-card short">
