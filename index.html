@@ -193,18 +193,24 @@
       transform: rotate(0deg);
     }
     
-    .biz-details {
+    .biz-details-row {
       display: none;
+      grid-column: 1 / -1;
       margin-top: 10px;
-      padding: 15px;
+      padding: 20px;
       background: rgba(255, 255, 255, 0.1);
       border-radius: 8px;
       font-size: 0.9rem;
       line-height: 1.4;
     }
     
-    .biz-details.show {
+    .biz-details-row.show {
       display: block;
+    }
+    
+    .biz-details-content {
+      max-width: 800px;
+      margin: 0 auto;
     }
     
     /* Responsive */
@@ -972,11 +978,13 @@
                   <p class="awards_data">Servizi generalisti (social, grafica, web, pubblicità…)</p>
                   <p class="awards_data white">
                     <span class="biz-toggle" onclick="toggleBizDetails('specializzazione')">Solo siti strategici</span>
-                    <div id="specializzazione" class="biz-details">
-                      ✅ Solo siti web strategici<br>
-                      BizStudio si occupa ESCLUSIVAMENTE di siti web strategici: belli, veloci e orientati al business. Non facciamo social, grafica o pubblicità - solo siti che convertono visitatori in clienti.
-                    </div>
                   </p>
+                </div>
+                <div id="specializzazione" class="biz-details-row">
+                  <div class="biz-details-content">
+                    ✅ Solo siti web strategici<br>
+                    BizStudio si occupa ESCLUSIVAMENTE di siti web strategici: belli, veloci e orientati al business. Non facciamo social, grafica o pubblicità - solo siti che convertono visitatori in clienti.
+                  </div>
                 </div>
                 <div data-w-id="e34ba04e-d7c1-c1fb-2b28-5b5f93629433" class="awards_row">
                   <p class="awards_data"><strong class="bold-text-36">Rapporto &amp; Comunicazione</strong></p>
@@ -985,11 +993,13 @@
                   <p class="awards_data">Ticket impersonali, linguaggio tecnico</p>
                   <p class="awards_data white">
                     <span class="biz-toggle" onclick="toggleBizDetails('rapporto')">Consulente dedicato</span>
-                    <div id="rapporto" class="biz-details">
-                      ✅ Consulente dedicato<br>
-                      Hai un consulente dedicato che traduce il tecnico in semplice, ti ascolta e ti guida con trasparenza. Comunicazione chiara, diretta, onesta - ti facciamo sentire compreso, non un numero.
-                    </div>
                   </p>
+                </div>
+                <div id="rapporto" class="biz-details-row">
+                  <div class="biz-details-content">
+                    ✅ Consulente dedicato<br>
+                    Hai un consulente dedicato che traduce il tecnico in semplice, ti ascolta e ti guida con trasparenza. Comunicazione chiara, diretta, onesta - ti facciamo sentire compreso, non un numero.
+                  </div>
                 </div>
                 <div data-w-id="e34ba04e-d7c1-c1fb-2b28-5b5f93629437" class="awards_row">
                   <p class="awards_data"><strong class="bold-text-37">Pagamento</strong></p>
@@ -998,11 +1008,13 @@
                   <p class="awards_data">Canoni vincolanti e clausole nascoste</p>
                   <p class="awards_data white">
                     <span class="biz-toggle" onclick="toggleBizDetails('pagamento')">Pagamenti a fasi</span>
-                    <div id="pagamento" class="biz-details">
-                      ✅ Pagamento a fasi<br>
-                      Paghi solo dopo approvazione scritta di ogni step. Non devi mai versare l'intero importo in anticipo: ogni fase si paga solo quando è completata e approvata da te per iscritto.
-                    </div>
                   </p>
+                </div>
+                <div id="pagamento" class="biz-details-row">
+                  <div class="biz-details-content">
+                    ✅ Pagamento a fasi<br>
+                    Paghi solo dopo approvazione scritta di ogni step. Non devi mai versare l'intero importo in anticipo: ogni fase si paga solo quando è completata e approvata da te per iscritto.
+                  </div>
                 </div>
                 <div data-w-id="e34ba04e-d7c1-c1fb-2b28-5b5f9362943c" class="awards_row">
                   <p class="awards_data"><strong class="bold-text-38">Velocità Consegna</strong></p>
@@ -1011,11 +1023,13 @@
                   <p class="awards_data">2–6 mesi (processi lenti e burocratici)</p>
                   <p class="awards_data white">
                     <span class="biz-toggle" onclick="toggleBizDetails('velocita')">7-30 giorni</span>
-                    <div id="velocita" class="biz-details">
-                      ✅ 7–30 giorni<br>
-                      Consegniamo in 7-30 giorni grazie al nostro metodo a fasi ottimizzato. PERÒ: richiediamo collaborazione attiva - se rispetti i tempi di feedback concordati, manteniamo la velocità promessa.
-                    </div>
                   </p>
+                </div>
+                <div id="velocita" class="biz-details-row">
+                  <div class="biz-details-content">
+                    ✅ 7–30 giorni<br>
+                    Consegniamo in 7-30 giorni grazie al nostro metodo a fasi ottimizzato. PERÒ: richiediamo collaborazione attiva - se rispetti i tempi di feedback concordati, manteniamo la velocità promessa.
+                  </div>
                 </div>
                 <div data-w-id="e34ba04e-d7c1-c1fb-2b28-5b5f93629441" class="awards_row">
                   <p class="awards_data"><strong class="bold-text-39">Approccio Strategico</strong></p>
@@ -1024,11 +1038,13 @@
                   <p class="awards_data">Dispersivo (fanno di tutto, senza focus profondo)</p>
                   <p class="awards_data white">
                     <span class="biz-toggle" onclick="toggleBizDetails('approccio')">Business-centrico + conversioni</span>
-                    <div id="approccio" class="biz-details">
-                      ✅ Business-centrico + conversioni<br>
-                      Analizziamo il tuo business, studiamo la psicologia del consumatore e ottimizziamo ogni elemento per massimizzare le conversioni. Non facciamo siti "belli e basta" - ogni progetto deve avere senso dal punto di vista del ROI.
-                    </div>
                   </p>
+                </div>
+                <div id="approccio" class="biz-details-row">
+                  <div class="biz-details-content">
+                    ✅ Business-centrico + conversioni<br>
+                    Analizziamo il tuo business, studiamo la psicologia del consumatore e ottimizziamo ogni elemento per massimizzare le conversioni. Non facciamo siti "belli e basta" - ogni progetto deve avere senso dal punto di vista del ROI.
+                  </div>
                 </div>
                 <div data-w-id="e34ba04e-d7c1-c1fb-2b28-5b5f93629446" class="awards_row">
                   <p class="awards_data"><strong class="bold-text-40">Fiducia &amp; Trasparenza</strong></p>
@@ -1037,11 +1053,13 @@
                   <p class="awards_data">Contratti rigidi e cavilli</p>
                   <p class="awards_data white">
                     <span class="biz-toggle" onclick="toggleBizDetails('fiducia')">Contratti chiari, zero sorprese</span>
-                    <div id="fiducia" class="biz-details">
-                      ✅ Contratti chiari, zero sorprese<br>
-                      Contratti semplici e chiari, senza clausole nascoste. Se non possiamo fare qualcosa, te lo diciamo subito - non vendiamo quello che non sappiamo fare. Zero progetti lasciati a metà.
-                    </div>
                   </p>
+                </div>
+                <div id="fiducia" class="biz-details-row">
+                  <div class="biz-details-content">
+                    ✅ Contratti chiari, zero sorprese<br>
+                    Contratti semplici e chiari, senza clausole nascoste. Se non possiamo fare qualcosa, te lo diciamo subito - non vendiamo quello che non sappiamo fare. Zero progetti lasciati a metà.
+                  </div>
                 </div>
                 <div data-w-id="e34ba04e-d7c1-c1fb-2b28-5b5f9362944b" class="awards_row">
                   <p class="awards_data"><strong class="bold-text-41">Revisioni</strong></p>
@@ -1050,11 +1068,13 @@
                   <p class="awards_data">3–5 inclusi</p>
                   <p class="awards_data white">
                     <span class="biz-toggle" onclick="toggleBizDetails('revisioni')">Revisioni illimitate, fino a consegna</span>
-                    <div id="revisioni" class="biz-details">
-                      ✅ Revisioni illimitate<br>
-                      Revisioni illimitate fino alla consegna finale, MA con una condizione chiara: devi rispettare i tempi di risposta concordati. Non si torna indietro su step già approvati per iscritto.
-                    </div>
                   </p>
+                </div>
+                <div id="revisioni" class="biz-details-row">
+                  <div class="biz-details-content">
+                    ✅ Revisioni illimitate<br>
+                    Revisioni illimitate fino alla consegna finale, MA con una condizione chiara: devi rispettare i tempi di risposta concordati. Non si torna indietro su step già approvati per iscritto.
+                  </div>
                 </div>
                 <div data-w-id="e34ba04e-d7c1-c1fb-2b28-5b5f9362944f" class="awards_row linedown">
                   <p class="awards_data"><strong class="bold-text-42">Supporto Post-Lancio</strong></p>
@@ -1063,11 +1083,13 @@
                   <p class="awards_data">Pacchetti costosi e vincolanti</p>
                   <p class="awards_data white">
                     <span class="biz-toggle" onclick="toggleBizDetails('supporto')">90 giorni inclusi + supporto a vita</span>
-                    <div id="supporto" class="biz-details">
-                      ✅ 90 giorni inclusi + supporto a vita<br>
-                      90 giorni di supporto completo inclusi nel prezzo. Dopo: assistenza tecnica base sempre gratuita per tutta la vita. Evoluzioni o nuove funzionalità con pacchetti chiari e senza vincoli.
-                    </div>
                   </p>
+                </div>
+                <div id="supporto" class="biz-details-row">
+                  <div class="biz-details-content">
+                    ✅ 90 giorni inclusi + supporto a vita<br>
+                    90 giorni di supporto completo inclusi nel prezzo. Dopo: assistenza tecnica base sempre gratuita per tutta la vita. Evoluzioni o nuove funzionalità con pacchetti chiari e senza vincoli.
+                  </div>
                 </div>
               </div>
             </div>
