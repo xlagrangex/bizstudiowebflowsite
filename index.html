@@ -61,13 +61,9 @@
       will-change: transform;
     }
     
-    [data-infinite-vertical="true"] ._iv-track > *:not(:last-child) {
-      margin-bottom: var(--iv-gap, 16px);
-    }
-    
-    /* Spacing aggiuntivo per le card */
+    /* Spacing forzato per le card */
     [data-infinite-vertical="true"] ._iv-track > * {
-      margin-bottom: 20px;
+      margin-bottom: 60px !important;
     }
 
     [data-infinite-vertical="true"] ._iv-track > * {
