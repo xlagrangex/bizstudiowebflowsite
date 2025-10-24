@@ -3737,48 +3737,65 @@ requestAnimationFrame(raf);
 <!-- Performance optimizations -->
 <script>
 // Lazy loading for images
-document.addEventListener('DOMContentLoaded', function() {
-  const images = document.querySelectorAll('img[data-src]');
-  const imageObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const img = entry.target;
-        img.src = img.dataset.src;
-        img.classList.remove('lazy');
-        observer.unobserve(img);
-      }
+// Optimized lazy loading with requestIdleCallback
+function initLazyLoading() {
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(() => {
+      const images = document.querySelectorAll('img[data-src]');
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src;
+            img.classList.remove('lazy');
+            observer.unobserve(img);
+          }
+        });
+      }, {
+        rootMargin: '50px 0px',
+        threshold: 0.01
+      });
+      
+      images.forEach(img => imageObserver.observe(img));
     });
-  }, {
-    rootMargin: '50px 0px',
-    threshold: 0.01
-  });
-  
-  images.forEach(img => imageObserver.observe(img));
-  
-  /* Preload critical images */
-  const criticalImages = [
-    'images/logo-bizstudio.svg',
-    'images/hero-image.webp'
-  ];
-  
-  criticalImages.forEach(src => {
-    const link = document.createElement('link');
-    link.rel = 'preload';
-    link.as = 'image';
-    link.href = src;
-    document.head.appendChild(link);
-  });
-});
-
-// Throttle scroll events
-let scrollTimeout;
-window.addEventListener('scroll', function() {
-  if (!scrollTimeout) {
-    scrollTimeout = setTimeout(function() {
-      scrollTimeout = null;
-    }, 16);
+  } else {
+    setTimeout(() => {
+      const images = document.querySelectorAll('img[data-src]');
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src;
+            img.classList.remove('lazy');
+            observer.unobserve(img);
+          }
+        });
+      }, {
+        rootMargin: '50px 0px',
+        threshold: 0.01
+      });
+      
+      images.forEach(img => imageObserver.observe(img));
+    }, 100);
   }
-});
+}
+
+document.addEventListener('DOMContentLoaded', initLazyLoading);
+
+// Advanced throttling with requestAnimationFrame
+let scrollRAF;
+let isScrolling = false;
+
+function handleScroll() {
+  if (!isScrolling) {
+    isScrolling = true;
+    requestAnimationFrame(() => {
+      isScrolling = false;
+    });
+  }
+}
+
+window.addEventListener('scroll', handleScroll, { passive: true });
 
 // Optimize animations when tab is not visible
 document.addEventListener('visibilitychange', function() {
@@ -3794,6 +3811,27 @@ document.addEventListener('visibilitychange', function() {
     });
   }
 });
+
+// Defer non-critical JavaScript execution
+function deferExecution(fn, delay = 0) {
+  if (delay > 0) {
+    setTimeout(fn, delay);
+  } else if ('requestIdleCallback' in window) {
+    requestIdleCallback(fn);
+  } else {
+    requestAnimationFrame(fn);
+  }
+}
+
+// Optimize GSAP animations
+deferExecution(() => {
+  if (typeof gsap !== 'undefined') {
+    gsap.config({
+      nullTargetWarn: false,
+      trialWarn: false
+    });
+  }
+}, 100);
 </script>
 </body>
 </html>
