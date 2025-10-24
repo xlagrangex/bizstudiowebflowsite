@@ -201,8 +201,12 @@
       border-radius: 8px;
       font-size: 0.9rem;
       line-height: 1.4;
-      position: relative;
+      position: absolute;
+      left: 0;
+      right: 0;
       z-index: 10;
+      width: 100%;
+      box-sizing: border-box;
     }
     
     .biz-details-row.show {
@@ -212,6 +216,7 @@
     /* Assicura che i dettagli rimangano nella colonna BizStudio */
     .awards_data.white {
       position: relative;
+      overflow: visible;
     }
     
     /* Responsive */
