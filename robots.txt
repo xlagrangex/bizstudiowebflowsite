@@ -1,0 +1,43 @@
+# robots.txt - BizStudio.it
+# Web Agency - Milano, Roma, Napoli
+
+User-agent: *
+Allow: /
+Disallow: /template/
+Disallow: /401.html
+Disallow: /old-home.html
+Disallow: /untitled.html
+Disallow: /detail_work.html
+Disallow: /detail_legal.html
+Disallow: /detail_blog-posts.html
+Disallow: /contact/2.html
+Disallow: /contact/3.html
+Disallow: /blog/1.html
+Disallow: /blog/2.html
+Disallow: /blog/3.html
+Disallow: /works/2.html
+Disallow: /works/3.html
+
+# AI Crawlers - Allowed
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://bizstudio.it/sitemap.xml

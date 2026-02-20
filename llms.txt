@@ -1,0 +1,35 @@
+# BizStudio.it
+
+> BizStudio e' una web agency italiana con sede operativa a Napoli che serve clienti in tutta Italia, con focus su Milano, Roma e Napoli. Progettiamo e sviluppiamo siti web professionali, e-commerce e landing page per PMI, startup e professionisti.
+
+## Servizi
+
+- **Siti Web Professionali**: Siti vetrina moderni e responsive, ottimizzati per la conversione. Da 1.000 EUR.
+- **E-commerce**: Negozi online su Shopify, WooCommerce e piattaforme custom. Da 3.000 EUR.
+- **Landing Page**: Pagine di atterraggio ottimizzate per campagne pubblicitarie e lead generation. Da 800 EUR.
+- **SEO e Ottimizzazione**: Posizionamento sui motori di ricerca, audit tecnici, strategia contenuti.
+- **Web Design**: Design UI/UX personalizzato con focus su usabilita' e brand identity.
+- **Sviluppo Webflow**: Siti web professionali su piattaforma Webflow, senza codice.
+
+## Informazioni
+
+- **Fondatore**: Vincenzo Petrone
+- **Email**: bizstudio.it@gmail.com
+- **Telefono**: +39 379 247 3044
+- **Sito Web**: https://bizstudio.it
+- **Aree Servite**: Milano, Roma, Napoli e tutta Italia
+
+## Pagine Principali
+
+- Homepage: https://bizstudio.it/
+- Portfolio: https://bizstudio.it/portfolio.html
+- Chi Siamo: https://bizstudio.it/studio.html
+- Contatti: https://bizstudio.it/contact/1.html
+
+## Competenze
+
+Webflow, Shopify, WordPress, WooCommerce, HTML/CSS/JavaScript, SEO tecnico, Google Ads, Meta Ads, UI/UX Design, Branding
+
+## Clienti Tipo
+
+PMI italiane, startup, professionisti, ristoranti, studi medici, artigiani, e-commerce food & beverage, aziende manifatturiere
